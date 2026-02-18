@@ -13,6 +13,8 @@
     /* Oxford Blue - Dark Backgrounds, Main Text */
     --color-grey-dark: #333333;
     /* Dark Grey (Retained) */
+    --color-grey-darker: #141414;
+    /* Darker Grey - User Request */
     --color-grey: #666666;
     /* Medium Grey */
     --color-light: #D9E1F1;

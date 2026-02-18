@@ -45,5 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    // --- Mobile Navigation Logic ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('#main-nav');
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('nav-active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('nav-active');
+            });
+        });
+    }
 
 });
