@@ -1,0 +1,52 @@
+:root {
+    /* Color Palette - Professional Blue & Elegant */
+    --color-primary: #31487A;
+    /* YInMn Blue - Buttons (CTA), Secondary Accents */
+    --color-secondary: #1E2E4F;
+    /* Space Cadet - Product Cards, Footers */
+    --color-accent: #8FB3E2;
+    /* Jordy Blue - Icons, Decorative Borders */
+    --color-orange: #FF6B00;
+    /* Safety Orange - Hover Accents (Restored) */
+
+    --color-dark: #192338;
+    /* Oxford Blue - Dark Backgrounds, Main Text */
+    --color-grey-dark: #333333;
+    /* Dark Grey (Retained) */
+    --color-grey: #666666;
+    /* Medium Grey */
+    --color-light: #D9E1F1;
+    /* Lavender - Light Section Backgrounds */
+    --color-white: #FFFFFF;
+
+    /* Text Colors */
+    --text-main: var(--color-dark);
+    --text-light: var(--color-grey);
+    --text-white: var(--color-light);
+    /* Text on dark backgrounds */
+
+    /* Typography */
+    --font-heading: 'Roboto', 'Arial', sans-serif;
+    --font-body: 'Open Sans', 'Helvetica', sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    /* 8px */
+    --spacing-sm: 1rem;
+    /* 16px */
+    --spacing-md: 2rem;
+    /* 32px */
+    --spacing-lg: 4rem;
+    /* 64px */
+    --spacing-xl: 8rem;
+    /* 128px */
+
+    /* Borders & Shadows */
+    --border-radius: 4px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+    /* Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+}
