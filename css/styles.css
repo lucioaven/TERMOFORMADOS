@@ -148,7 +148,7 @@ p {
 }
 
 .logo-img {
-    height: 50px;
+    max-height: 60px;
     /* Adjust based on header height (80px) */
     width: auto;
     object-fit: contain;
@@ -321,7 +321,8 @@ section {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns on desktop */
     gap: var(--spacing-md);
 }
 
@@ -336,27 +337,56 @@ section {
     /* #8FB3E2 Border for definition */
     display: flex;
     flex-direction: column;
+    position: relative;
+    /* Context for glow */
+}
+
+/* 7th item centering logic */
+.product-card:last-child {
+    grid-column: 2;
+    /* Center in the 3-column grid (2nd column is center) */
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    /* Lift effect */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+    /* Lift effect requested */
+    box-shadow: 0 15px 30px rgba(143, 179, 226, 0.2);
+    /* Blue-ish glow shadow */
+}
+
+/* Glow effect on hover */
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius);
+    background: radial-gradient(circle at center, rgba(143, 179, 226, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.product-card:hover::before {
+    opacity: 1;
 }
 
 .card-image {
     height: 250px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    /* Gradient Background */
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+    /* #1E2E4F to #31487A */
     overflow: hidden;
     position: relative;
-    border-bottom: 4px solid var(--color-accent);
-    /* #8FB3E2 Accent border */
+    border-bottom: 2px solid var(--color-accent);
+    /* #8FB3E2 */
     padding: 20px;
-    /* Breathe room for image */
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
 .card-image img {
@@ -367,8 +397,7 @@ section {
     object-fit: contain;
     /* Prevent cropping */
     transition: transform 0.5s ease;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
-    /* Add depth to the product image itself */
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
 }
 
 .product-card:hover .card-image img {
@@ -469,85 +498,101 @@ section {
 }
 
 /* Contact */
+/* Contact */
 #contact {
     background-color: var(--color-white);
+    /* Light background maintained */
 }
 
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-xl);
-    align-items: start;
-}
-
-.contact-form {
-    background-color: var(--color-light);
-    padding: var(--spacing-md);
+/* Centralized Panel */
+.contact-panel {
+    background-color: var(--color-secondary);
+    /* #1E2E4F */
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-.form-group {
-    margin-bottom: var(--spacing-sm);
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--color-dark);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-}
-
-.contact-form button {
-    width: 100%;
-    border: none;
-    font-size: 1rem;
-}
-
-.contact-info {
-    padding: var(--spacing-md);
-    background-color: var(--color-dark);
-    color: var(--text-white);
-    border-radius: var(--border-radius);
-}
-
-.contact-info h3 {
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: var(--spacing-xs);
-}
-
-.contact-info ul li {
-    margin-bottom: var(--spacing-sm);
-    font-size: 0.95rem;
+    padding: var(--spacing-lg) var(--spacing-md);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
 }
 
-.contact-info strong {
-    color: #ccc;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-bottom: 4px;
+.contact-panel h2 {
+    color: var(--color-white);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Contact Buttons (Capsules) */
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+
+.contact-capsule {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Subtle transparent white */
+    color: var(--text-white);
+    padding: 12px 24px;
+    border-radius: 50px;
+    /* Capsule shape */
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-capsule:hover {
+    background-color: rgba(143, 179, 226, 0.3);
+    /* Lighter blue tint */
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-capsule .icon {
+    font-size: 1.2rem;
+}
+
+/* Detailed address styling if needed, or keep same as capsule */
+.address-capsule {
+    width: 100%;
+    /* Full width for address if long */
+    max-width: 500px;
+    justify-content: center;
+    pointer-events: none;
+    /* Address usually not clickable unless maps link */
+}
+
+/* Instagram Button - Specific Style */
+.btn-instagram-new {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white !important;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--spacing-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-instagram-new:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(220, 39, 67, 0.6);
+    /* Glow effect */
 }
 
 /* Location / Map Section */
@@ -605,6 +650,42 @@ footer {
     }
 
     /* Removed Mobile-Specific Menu overrides since it's now global */
+}
+
+/* Tablet Responsvie for Grid */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-card:last-child {
+        grid-column: 1 / -1;
+        /* Span full width on tablet if odd number, or auto */
+        grid-column: auto;
+        /* Reset specific placement */
+    }
+
+    /* If we want the 7th item centered in a 2-col grid, it spans 1 col.
+       It will just naturally fall. If we want it centered, we can do: */
+    .product-grid>.product-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 500px;
+        /* Optional constraint */
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card:last-child {
+        grid-column: auto;
+        max-width: none;
+    }
 }
 
 /* Instagram Button */
