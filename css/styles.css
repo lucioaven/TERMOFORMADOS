@@ -511,13 +511,16 @@ section {
     border-radius: var(--border-radius);
     padding: var(--spacing-lg) var(--spacing-md);
     max-width: 700px;
+    width: 90%;
+    /* Responsive default */
     margin: 0 auto;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: 0;
+    /* Control spacing via contact-item */
 }
 
 .contact-panel h2 {
@@ -526,73 +529,105 @@ section {
     margin-bottom: var(--spacing-md);
 }
 
-/* Contact Buttons (Capsules) */
-.contact-buttons {
+/* Vertical Contact List */
+.contact-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-sm);
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 2rem;
+    /* Space between each group */
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 }
 
-.contact-capsule {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Subtle transparent white */
-    color: var(--text-white);
-    padding: 12px 24px;
+.contact-label {
+    color: var(--color-accent);
+    /* #8FB3E2 */
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Uniform Buttons */
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 350px;
+    /* Fixed width for uniformity */
+    height: 55px;
+    /* Fixed height for uniformity */
     border-radius: 50px;
     /* Capsule shape */
-    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    /* Grayish semi-transparent */
+    border: none;
+    color: var(--text-white);
+    font-size: 1rem;
     font-weight: 500;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.contact-capsule:hover {
-    background-color: rgba(143, 179, 226, 0.3);
-    /* Lighter blue tint */
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.contact-capsule .icon {
-    font-size: 1.2rem;
-}
-
-/* Detailed address styling if needed, or keep same as capsule */
-.address-capsule {
-    width: 100%;
-    /* Full width for address if long */
-    max-width: 500px;
-    justify-content: center;
-    pointer-events: none;
-    /* Address usually not clickable unless maps link */
-}
-
-/* Instagram Button - Specific Style */
-.btn-instagram-new {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: white !important;
-    padding: 15px 35px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.1rem;
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: var(--spacing-md);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease-in-out;
+    /* Ensure icon size doesn't shift layout */
+    cursor: pointer;
+    box-sizing: border-box;
+    /* Crucial for identical sizing */
+    padding: 0 1rem;
+    /* Ensure padding doesn't collapse */
 }
 
-.btn-instagram-new:hover {
+/* SVG Icon Style */
+.contact-btn .icon-svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    margin-right: 10px;
+    display: block;
+}
+
+/* Image Icon (Instagram) */
+.contact-btn .icon-img {
+    width: 40px;
+    /* Increased to 40px */
+    height: 40px;
+    /* Increased to 40px */
+    object-fit: contain;
+    margin-right: 10px;
+    display: block;
+}
+
+.contact-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(220, 39, 67, 0.6);
-    /* Glow effect */
+    background-color: var(--color-orange);
+    /* Orange hover as requested */
+    color: var(--color-white);
+    /* Ensure text stays white */
+    border-color: var(--color-orange);
+    /* Optional: match border to bg if any exists */
+}
+
+/* Instagram Specific Override - Removed to match others */
+.contact-btn.btn-instagram {
+    /* Previously gradient, now inheriting default transparent style */
+    background: rgba(255, 255, 255, 0.15);
+    /* Explicitly matching others if needed, or just let it cascade */
+    border: none;
+    color: var(--text-white);
+}
+
+/* Retaining specific hover rule to ensure it overrides the base class background */
+.contact-btn.btn-instagram:hover {
+    background-color: var(--color-orange);
+    color: var(--color-white);
 }
 
 /* Location / Map Section */
